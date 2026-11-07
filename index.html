@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101615">
+  <title>Aroma — interactive diffuser</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="model.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
+    <clipPath id="manual-body" clipPathUnits="objectBoundingBox">
+      <path d="M 0,1 C 0,.69 .025,.31 .12,.14 C .22,.055 .36,0 .5,0 C .64,0 .78,.055 .88,.14 C .975,.31 1,.69 1,1 Z"/>
+    </clipPath>
+  </defs></svg>
+  <header><a class="wordmark" href="./index.html">aroma<span> / </span></a><span class="eyebrow">AN INTERACTIVE APPLIANCE STUDY</span></header>
+  <main>
+    <section class="experience" aria-label="Interactive aroma diffuser">
+      <div class="intro"><span class="eyebrow">A LITTLE ROOM TO BREATHE</span><h1>Set the mood.<br>Find your quiet.</h1><p>Light, mist, and a moment of calm.<br>Explore your diffuser, one touch at a time.</p></div>
+      <div class="stage" id="stage" data-output="OFF">
+        <div class="ambient"></div>
+        <div class="mist" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="scent-plume" id="scent-plume" aria-hidden="true"></div>
+        <div class="diffuser" role="group" aria-label="Frosted aroma diffuser, light off" id="diffuser">
+          <div class="shell"><div class="top"><span></span></div><span class="brand">VictSing</span></div>
+          <div class="base"><div class="device-controls">
+            <button id="light" aria-label="Light: cycle, freeze, or change color"><span>☼</span><small>LIGHT</small></button>
+            <button id="sleep" aria-pressed="false"><span class="sleep-icon">☾</span><small>SLEEP</small></button>
+            <button id="timer" aria-pressed="false"><span>◷</span><small>TIMER</small></button>
+            <button id="mist" aria-pressed="false"><span>≋</span><small>MIST</small></button>
+          </div></div><div class="feet"></div>
+        </div>
+        <div class="surface"></div>
+      </div>
+      <p class="stage-caption"><span class="status-dot" id="status-dot"></span><span id="output-caption">Ready when you are</span></p>
+    </section>
+    <aside class="panel" aria-label="Diffuser settings and status">
+      <div class="panel-heading"><span class="eyebrow">YOUR DIFFUSER</span><span class="capacity">150 mL</span></div>
+      <h2>A quieter atmosphere.</h2><p class="panel-description">Use the four buttons on the diffuser.<br>Its current settings appear here.</p>
+      <div class="readouts">
+        <div><span>Mist output</span><strong id="mist-state">Off</strong></div>
+        <div><span>Light</span><strong id="light-state">Off</strong></div>
+        <div><span>Sleep mode</span><strong id="sleep-state">Off</strong></div>
+        <div><span>Timer · 1 minute</span><strong id="timer-state">Not set</strong></div>
+      </div>
+      <section class="water-section" aria-label="Water tank">
+        <div class="water-heading"><h3>Water level</h3><span><strong id="water-value">150</strong> / 150 mL</span></div>
+        <progress id="water-bar" value="150" max="150" aria-label="Water remaining">150 mL</progress>
+        <div class="water-actions">
+          <button class="refill" id="refill" type="button">＋ <span>Hold to refill</span></button>
+          <button class="refill" id="pour" type="button"><span>Pour out water</span></button>
+        </div>
+        <p class="hint" id="refill-hint">Tank full. Refill when the mist is off.</p>
+      </section>
+      <section class="oils-section" aria-labelledby="oils-title">
+        <div class="water-heading"><h3 id="oils-title">Essential oils</h3><span id="drop-total">0 / 5 drops</span></div>
+        <p class="hint">Tap an oil to add one drop. Mix up to five drops with mist off.</p>
+        <div class="oil-options" id="oil-options">
+          <button class="oil" type="button" data-oil="lavender"><span class="oil-icon" aria-hidden="true">✿</span><span>Lavender</span><span class="oil-count">0</span></button>
+          <button class="oil" type="button" data-oil="rosemary"><span class="oil-icon" aria-hidden="true">🌿</span><span>Rosemary</span><span class="oil-count">0</span></button>
+          <button class="oil" type="button" data-oil="orange"><span class="oil-icon" aria-hidden="true">∿</span><span>Sweet orange</span><span class="oil-count">0</span></button>
+          <button class="oil" type="button" data-oil="peppermint"><span class="oil-icon" aria-hidden="true">❧</span><span>Peppermint</span><span class="oil-count">0</span></button>
+        </div>
+        <p class="hint" id="scent-status">No oil added.</p>
+      </section>
+      <p class="notice" id="notice" role="status" aria-live="polite">Press Mist for high output, or Sleep for low.</p>
+      <p class="warning-toast" id="warning-toast" role="alert" hidden></p>
+      <details><summary>How it works</summary><div class="guide"><p><b>Light</b> starts a color cycle. Press to freeze, then step through eight colors before turning off.</p><p><b>Sleep</b> uses low mist and switches the light off. Press again to restore the previous mist setting and light. Changing Light during Sleep keeps your new light setting.</p><p><b>Mist</b> toggles regular mist and exits Sleep. It can return low mist to high or off, depending on the remembered regular setting.</p><p><b>Timer</b> turns both light and mist off after one minute. Press again to cancel.</p><p><b>Water</b> lasts 3 minutes on high or 6 on low. Hold refill for 5 seconds to fill an empty tank. Empty water stops mist; light stays as it is.</p></div></details>
+      <details><summary>Behind the states</summary><div class="guide"><div class="memory"><span>Regular mist <b id="regular-state">OFF</b></span><span>Sleep <b id="memory-sleep">OFF</b></span></div><p id="explanation">Regular mist is off and Sleep is off, so there is no mist.</p><p class="simulation-note">Simulation: 1-minute timer; accelerated water consumption. Empty water resets mist and Sleep. These are model choices.</p><button class="reset" id="reset">Reset simulation</button></div></details>
+    </aside>
+  </main>
+  <footer><span>AROMA / APPLIANCE EXPLORATIONS</span><span>Small actions. Visible transitions.</span></footer>
+</body>
+</html>
