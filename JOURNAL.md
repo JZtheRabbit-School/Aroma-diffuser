@@ -103,3 +103,13 @@ This is a retrospective summary of the conversation, followed by ongoing dated r
 
 - The learner approved pushing the current prototype and replacing GitHub's starter README with the local project README.
 - Verified the remote held the initial README and reran all 22 model checks successfully before preparing the project commit.
+
+### CodePen export
+
+- Prepared three copy-ready files in `codepen/` for the default CodePen editor. The HTML links to the exported CSS and to a single script that loads the model before the interface.
+- Added copy instructions to README.md. The main prototype files remain the source for future updates to the export.
+
+## 2026-11-08 — Scent motif motion
+
+- The learner noticed that scent motifs rose in a V shape. Spread their starting positions across the plume and varied their speed, timing, and gentle sideways movement.
+- Refreshed the CodePen CSS and JavaScript copies so they use the same animation.

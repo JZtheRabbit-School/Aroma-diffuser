@@ -43,10 +43,16 @@
     plume.replaceChildren(...motifs.map((button, index) => {
       const motif = button.querySelector('.oil-icon').cloneNode(true);
       motif.dataset.oil = button.dataset.oil;
-      motif.style.setProperty('--x', `${33 + (index * 19 % 36)}%`);
-      motif.style.setProperty('--delay', `${-((index * 0.79) % 4)}s`);
-      motif.style.setProperty('--drift', `${index % 2 === 0 ? -22 : 24}px`);
-      motif.style.setProperty('--rest-y', `${15 + (index * 23 % 95)}px`);
+      // Give each motif a lane, then vary its position, pace, and sway.
+      const lane = (index + 0.25 + Math.random() * 0.5) / motifs.length;
+      const duration = 3.5 + Math.random() * 2;
+      const phase = (0.27 + index * 0.618) % 1;
+      motif.style.setProperty('--x', `${16 + lane * 68}%`);
+      motif.style.setProperty('--duration', `${duration}s`);
+      motif.style.setProperty('--delay', `${-phase * duration}s`);
+      motif.style.setProperty('--sway-mid', `${Math.random() * 18 - 9}px`);
+      motif.style.setProperty('--sway-end', `${Math.random() * 18 - 9}px`);
+      motif.style.setProperty('--rest-y', `${15 + phase * 90}px`);
       return motif;
     }));
   }

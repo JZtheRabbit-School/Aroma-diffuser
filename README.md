@@ -29,6 +29,20 @@ Create a simplified model of a real-world appliance. Demonstrate states, steps, 
 - A separate hold-to-refill button. Refilling is allowed only while actual mist output is OFF. Release stops refilling; reaching capacity also stops it.
 - Timer uses one minute in this simulation instead of the real appliance's three hours.
 
+## Open in CodePen
+
+Create a new Pen using CodePen's default template. Replace the contents of its three editor files with the matching files in the `codepen/` folder:
+
+| CodePen editor | Copy from |
+| --- | --- |
+| HTML (`index.html`) | [codepen/index.html](codepen/index.html) |
+| CSS (`style.css`) | [codepen/style.css](codepen/style.css) |
+| JavaScript (`script.js`) | [codepen/script.js](codepen/script.js) |
+
+Use the default template with a full `index.html` document. The export links its own CSS and combined JavaScript. No libraries or preprocessors are required. Try Light, add a drop of Lavender, then press Mist to check the glow and scent motifs.
+
+These files are a snapshot for sharing. When editing the main prototype, refresh the export before copying it to CodePen.
+
 ## Mist and Sleep rules
 
 Turn actual mist output OFF before refilling, adding oil, or pouring out water. Pressing any of these controls on LOW or HIGH shows “Close the mist first.”

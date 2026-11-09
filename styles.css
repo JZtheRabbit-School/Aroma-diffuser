@@ -31,13 +31,13 @@
 .blend-full .oil-icon{filter:grayscale(1);color:#aeb4ad}
 .warning-toast{position:fixed;z-index:10;bottom:18px;left:50%;transform:translateX(-50%);max-width:calc(100vw - 32px);width:max-content;margin:0;padding:10px 16px;border:1px solid #c0a77977;border-radius:9px;background:#2d281f;color:#f9e3be;font-size:13px;box-shadow:0 6px 24px #0008;pointer-events:none}
 .scent-plume{position:absolute;z-index:4;bottom:412px;left:50%;width:130px;height:115px;transform:translateX(-50%);pointer-events:none;opacity:var(--scent-strength,0)}
-.scent-plume .oil-icon{position:absolute;bottom:0;left:var(--x);animation:scent-drift 4s var(--delay) linear infinite}
-[data-oil="peppermint"].oil-icon{animation-duration:3s}
+.scent-plume .oil-icon{position:absolute;bottom:0;left:var(--x);animation:scent-drift var(--duration) var(--delay) linear infinite}
 @keyframes scent-drift{
   0%{opacity:0;transform:translateY(4px) scale(.55)}
   25%{opacity:.85}
+  50%{transform:translate(var(--sway-mid),-55px) rotate(-8deg)}
   75%{opacity:.65}
-  100%{opacity:0;transform:translate(var(--drift),-110px) rotate(25deg)}
+  100%{opacity:0;transform:translate(var(--sway-end),-110px) rotate(12deg)}
 }
 @media(max-width:850px){.scent-plume{bottom:374px}}
 @media(prefers-reduced-motion:reduce){
